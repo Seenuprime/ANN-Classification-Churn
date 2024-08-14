@@ -56,7 +56,7 @@ mapping = {'yes': 1, 'no': 0}
 df['HasCrCard'] = df['HasCrCard'].map(mapping)
 df['IsActiveMember'] = df['IsActiveMember'].map(mapping)
 
-data = scaler.transform(df)
+data = scaler.transform(df.values)
 
 st.write(data)
 
