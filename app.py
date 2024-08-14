@@ -42,28 +42,32 @@ df = pd.DataFrame({
 st.write(df)
 # df = df.apply(lambda x: x.lower()if isinstance(x,str) else x)
 
-df['Gender'] = gender_encoder.transform(df['Gender'])
-st.write(df)
-names = geo_encoder.get_feature_names_out(['Geography'])
-print(names)
-store = geo_encoder.transform([df['Geography']])
+try:
+    df['Gender'] = gender_encoder.transform(df['Gender'])
+    st.write(df)
+    names = geo_encoder.get_feature_names_out(['Geography'])
+    print(names)
+    store = geo_encoder.transform([df['Geography']])
 
-df[names] = store.toarray()
+    df[names] = store.toarray()
 
-df.drop('Geography', axis=1, inplace=True)
+    df.drop('Geography', axis=1, inplace=True)
 
-mapping = {'yes': 1, 'no': 0}
-df['HasCrCard'] = df['HasCrCard'].map(mapping)
-df['IsActiveMember'] = df['IsActiveMember'].map(mapping)
+    mapping = {'yes': 1, 'no': 0}
+    df['HasCrCard'] = df['HasCrCard'].map(mapping)
+    df['IsActiveMember'] = df['IsActiveMember'].map(mapping)
 
-data = scaler.transform(df.values)
 
-st.write(data)
+    data = scaler.transform(df)
 
-preds = model.predict(data)
-print(preds)
+    st.write(data)
 
-if preds[[0]] < 0.5:
-    st.write('The Customer is not likely to leave!')
-else:
-    st.write('The Customer is likely to leave!')
+    preds = model.predict(data)
+    print(preds)
+
+    if preds[[0]] < 0.5:
+        st.write('The Customer is not likely to leave!')
+    else:
+        st.write('The Customer is likely to leave!')
+except Exception as e:
+    print(e)
