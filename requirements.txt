@@ -2,6 +2,6 @@ tensorflow
 pandas
 numpy
 scikit-learn
-tensfoboard
+tensorboard
 matplotlib
 streamlit
