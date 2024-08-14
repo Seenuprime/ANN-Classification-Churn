@@ -6,9 +6,9 @@ import pickle
 
 model = tf.keras.models.load_model(r"res/annchurn.keras")
 # print(model.summary())
-scaler = pickle.load(open('res\scaler.pkl', 'rb'))
-geo_encoder = pickle.load(open('res\geo_encoder.pkl', 'rb'))
-gender_encoder = pickle.load(open('res\gender_encoder.pkl', 'rb'))
+scaler = pickle.load(open('res/scaler.pkl', 'rb'))
+geo_encoder = pickle.load(open('res/geo_encoder.pkl', 'rb'))
+gender_encoder = pickle.load(open('res/gender_encoder.pkl', 'rb'))
 
 CreditScore = st.text_input("Enter Credit Score: ")
 gender = st.text_input("Enter Gender: ")
